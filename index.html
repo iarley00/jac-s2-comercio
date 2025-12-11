@@ -5,23 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expresso JAC 2025 | IFCE Baturité</title>
     
-    <!-- Fontes Google -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Ícones FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* ====== VARIÁVEIS DE CORES ====== */
         :root {
-            --cor-ifce: #0A3D5F;       /* Azul IFCE */
-            --cor-cafe: #8B4513;       /* Marrom café */
-            --cor-ferro: #D4A017;      /* Dourado ferrovia */
-            --cor-verde: #2E8B57;      /* Verde serra */
-            --cor-terra: #A0522D;      /* Marrom território */
-            --cor-identidade: #6A5ACD; /* Roxo identidade */
-            --cor-fundo: #FDFBF7;      /* Fundo papel */
-            --cor-texto: #333333;      /* Texto escuro */
+            --cor-ifce: #0A3D5F;
+            --cor-cafe: #8B4513;
+            --cor-ferro: #D4A017;
+            --cor-verde: #2E8B57;
+            --cor-terra: #A0522D;
+            --cor-identidade: #6A5ACD;
+            --cor-fundo: #FDFBF7;
+            --cor-texto: #333333;
             
             --fonte-titulo: 'Playfair Display', serif;
             --fonte-texto: 'Inter', sans-serif;
@@ -49,6 +47,7 @@
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(10, 61, 95, 0.03) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 20%);
+            overflow-x: hidden; /* Evita rolagem lateral indesejada */
         }
 
         /* ====== CABEÇALHO ====== */
@@ -65,32 +64,15 @@
         header::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,50 Q50,10 90,50 Q50,90 10,50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
             background-size: 200px;
             opacity: 0.3;
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .logo-ifce {
-            height: 100px;
-          /*  filter: brightness(0) invert(1); */
-        }
-
         .titulo-principal {
             font-family: var(--fonte-titulo);
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 5vw, 2.8rem); /* Responsivo */
             font-weight: 800;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -98,7 +80,7 @@
         }
 
         .subtitulo {
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 3vw, 1.4rem); /* Responsivo */
             font-weight: 300;
             opacity: 0.9;
             max-width: 900px;
@@ -122,20 +104,20 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            padding: 0 15px;
+            padding: 0 10px;
         }
 
         .nav-link {
             color: var(--cor-ifce);
             text-decoration: none;
-            padding: 22px 25px;
+            padding: 18px 20px;
             font-weight: 600;
             font-size: 1.05rem;
             transition: var(--transicao);
-            position: relative;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            white-space: nowrap;
         }
 
         .nav-link:hover {
@@ -166,36 +148,33 @@
             transition: var(--transicao);
         }
 
-        .secao:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
         .secao-memoria { border-left-color: var(--cor-cafe); }
         .secao-territorio { border-left-color: var(--cor-terra); }
         .secao-identidade { border-left-color: var(--cor-identidade); }
 
         .titulo-secao {
             font-family: var(--fonte-titulo);
-            font-size: 2.4rem;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 3px solid rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .titulo-secao i {
-            font-size: 2.2rem;
-            width: 70px;
-            height: 70px;
+            font-size: 1.8rem;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, currentColor, transparent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            flex-shrink: 0;
         }
 
         .secao-memoria .titulo-secao i { background-color: var(--cor-cafe); }
@@ -209,72 +188,12 @@
             margin-bottom: 30px;
         }
 
-        .conteudo-texto p {
-            margin-bottom: 20px;
-        }
+        .conteudo-texto p { margin-bottom: 20px; }
+        .conteudo-texto strong { color: var(--cor-ifce); font-weight: 600; }
 
-        .conteudo-texto strong {
-            color: var(--cor-ifce);
-            font-weight: 600;
-        }
+        /* ====== IMAGENS E MÍDIA ====== */
+        img { max-width: 100%; height: auto; }
 
-        /* ====== ÁREAS PARA COLAR IMAGENS ====== */
-        .area-imagem {
-            border: 3px dashed #ff6b6b;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            margin: 40px 0;
-            background-color: #fff5f5;
-            transition: var(--transicao);
-        }
-
-        .area-imagem:hover {
-            border-color: #ff4757;
-            background-color: #ffeaea;
-        }
-
-        .instrucao-imagem {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #ff4757;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .descricao-imagem {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .exemplo-codigo {
-            background: #2d3436;
-            color: #dfe6e9;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: monospace;
-            font-size: 1rem;
-            text-align: left;
-            margin: 20px auto;
-            max-width: 800px;
-            overflow-x: auto;
-            border-left: 5px solid #ff6b6b;
-        }
-
-        .tag-destaque {
-            background: #ff6b6b;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        /* ====== IMAGENS JÁ INSERIDAS ====== */
         .imagem-conteudo {
             width: 100%;
             max-width: 900px;
@@ -285,85 +204,131 @@
             border: 4px solid white;
         }
 
-        /* ====== CARDS DE DESTAQUE ====== */
+        /* ====== LINHA DO TEMPO (REFATORADA) ====== */
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* Linha Central */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 4px;
+            background: var(--cor-cafe);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            display: flex;
+            width: 100%;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 20px; /* Alinhado com o topo do card */
+            transform: translate(-50%, 0);
+            width: 20px;
+            height: 20px;
+            background: var(--cor-cafe);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--cor-cafe);
+            z-index: 2;
+        }
+
+        .timeline-content-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            position: relative;
+        }
+
+        /* Lado Esquerdo */
+        .timeline-left {
+            flex: 1;
+            padding-right: 40px;
+            text-align: right;
+        }
+        .timeline-left .timeline-content-box { border-right: 4px solid var(--cor-cafe); }
+        
+        /* Espaçadores */
+        .timeline-spacer { flex: 1; padding-left: 40px; }
+
+        /* Lado Direito */
+        .timeline-right {
+            flex: 1;
+            padding-left: 40px;
+            text-align: left;
+        }
+        .timeline-right .timeline-content-box { border-left: 4px solid var(--cor-cafe); }
+
+        /* ====== CARDS ====== */
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            /* Mudança: minmax de 350px para 280px para caber em celulares */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin: 40px 0;
         }
 
         .card {
             background: white;
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border-top: 5px solid;
             transition: var(--transicao);
         }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .card-territorio { border-top-color: var(--cor-terra); }
         .card-identidade { border-top-color: var(--cor-identidade); }
 
-        .card h3 {
-            font-family: var(--fonte-titulo);
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            color: var(--cor-ifce);
-        }
-
-        /* ====== SLIDER COMPARATIVO ====== */
+        /* ====== SLIDER ====== */
         .slider-container {
             position: relative;
             width: 100%;
             max-width: 900px;
-            height: 500px;
+            /* Altura responsiva com aspect-ratio ou altura fixa menor */
+            height: 500px; 
             margin: 40px auto;
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             border: 4px solid var(--cor-cafe);
         }
-
+        
         .img-fundo, .img-frente {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             object-fit: cover;
         }
-
-        .img-frente {
-            width: 50%;
-            border-right: 4px solid white;
-        }
-
+        .img-frente { width: 50%; border-right: 4px solid white; }
+        
         .slider-handle {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
+            width: 40px; height: 40px;
             background-color: var(--cor-ferro);
-            border: 5px solid white;
+            border: 4px solid white;
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
             z-index: 11;
             pointer-events: none;
         }
-
+        
         .slider-controle {
             position: absolute;
-            top: 50%;
-            width: 100%;
-            height: 50px;
+            top: 50%; width: 100%; height: 50px;
             z-index: 10;
             transform: translateY(-50%);
             opacity: 0;
@@ -378,609 +343,390 @@
             margin-top: 80px;
             border-top: 8px solid var(--cor-ferro);
         }
-
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
+            gap: 40px;
         }
-
-        .footer-section h3 {
-            font-family: var(--fonte-titulo);
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--cor-ferro);
-        }
-
         .creditos {
             text-align: center;
             padding-top: 40px;
             margin-top: 40px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.8;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        /* ====== RESPONSIVIDADE ====== */
+        /* ====== RESPONSIVIDADE (MEDIA QUERIES) ====== */
+        
+        /* Tablets e Telas Médias */
         @media (max-width: 992px) {
-            .titulo-principal { font-size: 2.3rem; }
-            .cards-container { grid-template-columns: 1fr; }
+            .secao { padding: 30px; }
             .slider-container { height: 400px; }
-            .area-imagem { padding: 30px 20px; }
         }
 
+        /* Celulares (Modo Retrato) */
         @media (max-width: 768px) {
-            .titulo-principal { font-size: 2rem; }
-            .secao { padding: 30px 20px; }
-            .titulo-secao { font-size: 1.9rem; }
-            .nav-link { padding: 18px 15px; font-size: 0.95rem; }
-            .instrucao-imagem { font-size: 1.1rem; }
-        }
+            /* Cabeçalho */
+            header { padding: 2rem 1rem; }
+            
+            /* Navegação */
+            .nav-link { 
+                padding: 15px 10px; 
+                font-size: 0.9rem; 
+                flex-direction: column; /* Ícone em cima do texto */
+                text-align: center;
+                gap: 5px;
+            }
+            
+            /* Ajuste da Linha do Tempo para Celular */
+            .timeline-line { left: 20px; transform: none; } /* Move a linha para a esquerda */
+            
+            .timeline-item { flex-direction: column; margin: 30px 0; }
+            
+            .timeline-marker { 
+                left: 20px; /* Alinha o marcador com a linha */
+                transform: translateX(-50%);
+            }
+            
+            /* Reseta os lados para empilhar tudo */
+            .timeline-left, .timeline-right {
+                width: 100%;
+                text-align: left;
+                padding: 0 0 0 50px; /* Espaço para a linha à esquerda */
+            }
+            
+            .timeline-spacer { display: none; } /* Esconde o espaço vazio */
+            
+            .timeline-left .timeline-content-box, 
+            .timeline-right .timeline-content-box {
+                border-right: none;
+                border-left: 4px solid var(--cor-cafe); /* Todos com borda na esquerda */
+            }
 
-        @media (max-width: 480px) {
-            .titulo-principal { font-size: 1.7rem; }
-            .logo-container { flex-direction: column; }
-            .logo-ifce { height: 60px; }
-            .footer-content { grid-template-columns: 1fr; }
+            /* Slider */
+            .slider-container { height: 300px; } /* Menor no celular */
+
+            /* Títulos e Textos */
+            .titulo-secao { font-size: 1.6rem; }
+            .conteudo-texto { font-size: 1rem; text-align: left; }
+            
+            /* Cards de Pega de Boi */
+            .cards-container { grid-template-columns: 1fr; } /* Uma coluna só */
+            
+            /* Grid da Galeria */
+            .grid-galeria { grid-template-columns: 1fr !important; }
+
+            /* QR Code Area */
+            .exemplo-codigo { font-size: 0.8rem; padding: 10px; overflow-x: scroll; }
         }
     </style>
 </head>
 <body>
-    <!-- CABEÇALHO PRINCIPAL -->
     <header> 
             <div>
                 <h1 class="titulo-principal"> JAC 2025</h1>
                 <p class="subtitulo">Juventudes em Movimento: Identidade, Tecnologia, Futuro e Educação no Maciço de Baturité</p>
             </div>
-        </div>
-        <div style="margin-top: 20px; font-size: 1.1rem; letter-spacing: 1px;">
+        <div style="margin-top: 20px; font-size: 1rem; letter-spacing: 1px;">
             🚂 Uma viagem por Memória, Território e Identidade
         </div>
     </header>
 
-    <!-- MENU DE NAVEGAÇÃO -->
     <nav>
         <div class="nav-container">
-            <a href="#memoria" class="nav-link active"><i class="fas fa-history"></i> Memória</a>
-            <a href="#territorio" class="nav-link"><i class="fas fa-mountain"></i> Território</a>
-            <a href="#identidade" class="nav-link"><i class="fas fa-users"></i> Identidade</a>
-            <a href="#integracao" class="nav-link"><i class="fas fa-link"></i> Conexões</a>
-            <a href="#qrcode" class="nav-link"><i class="fas fa-qrcode"></i> QR Code</a>
+            <a href="#memoria" class="nav-link active"><i class="fas fa-history"></i> <span>Memória</span></a>
+            <a href="#territorio" class="nav-link"><i class="fas fa-mountain"></i> <span>Território</span></a>
+            <a href="#identidade" class="nav-link"><i class="fas fa-users"></i> <span>Identidade</span></a>
+            <a href="#integracao" class="nav-link"><i class="fas fa-link"></i> <span>Conexões</span></a>
+            <a href="#qrcode" class="nav-link"><i class="fas fa-qrcode"></i> <span>QR Code</span></a>
         </div>
     </nav>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main>
-        <!-- SEÇÃO: MEMÓRIA (EXPANDIDA) -->
         <section id="memoria" class="secao secao-memoria">
-            <h2 class="titulo-secao"><i class="fas fa-history"></i> Memória de Baturité: Trilhas do Tempo</h2>
+            <h2 class="titulo-secao"><i class="fas fa-history"></i> Memória de Baturité</h2>
             
             <div class="conteudo-texto">
-                <p>Baturité carrega em seu nome a essência de suas origens: do Tupi <strong>"Batura" (serra) + "Eté" (verdadeira, real)</strong>. Mais que uma simples designação geográfica, este nome revela a conexão profunda entre o território e os povos que primeiro o habitaram.</p>
+                <p>Baturité carrega em seu nome a essência de suas origens: do Tupi <strong>"Batura" (serra) + "Eté" (verdadeira, real)</strong>.</p>
             </div>
 
-            <!-- SUBSEÇÃO: POVOS ORIGINÁRIOS -->
-            <div style="margin: 50px 0; padding: 40px; background: #f8f5f0; border-radius: 15px; border-left: 6px solid var(--cor-cafe);">
-                <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.8rem; margin-bottom: 25px;">
+            <div style="margin: 30px 0; padding: 30px; background: #f8f5f0; border-radius: 15px; border-left: 6px solid var(--cor-cafe);">
+                <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.5rem; margin-bottom: 20px;">
                     <i class="fas fa-people-group"></i> Os Primeiros Habitantes
                 </h3>
                 
                 <div class="conteudo-texto">
-                    <p>Antes da chegada dos colonizadores europeus, o Maciço de Baturité era território de diversas nações indígenas:</p>
+                    <p>O Maciço de Baturité era território de diversas nações indígenas:</p>
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0;">
+                    <div class="cards-container" style="margin-top: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
                         <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                             <h4 style="color: var(--cor-terra); margin-bottom: 10px;">👑 Potyguara</h4>
-                            <p>Conhecidos como "comedores de camarão", dominavam técnicas avançadas de agricultura e cerâmica.</p>
+                            <p>Conhecidos como "comedores de camarão", dominavam técnicas avançadas.</p>
                         </div>
                         
                         <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                             <h4 style="color: var(--cor-terra); margin-bottom: 10px;">🎨 Jenipapo-Kanindé</h4>
-                            <p>Especialistas em pintura corporal com jenipapo e na confecção de artesanato com fibras naturais.</p>
+                            <p>Especialistas em pintura corporal e artesanato.</p>
                         </div>
                         
                         <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                             <h4 style="color: var(--cor-terra); margin-bottom: 10px;">🌿 Choró e Kanyndé</h4>
-                            <p>Povos nômades que conheciam profundamente as trilhas e recursos naturais da serra.</p>
+                            <p>Povos nômades que conheciam profundamente a serra.</p>
                         </div>
                     </div>
-                    
-                    <p>Estes povos desenvolviam agricultura de subsistência, praticavam rituais sagrados conectados aos ciclos naturais e estabeleciam complexas redes de trocas comerciais que se estendiam por todo o Nordeste.</p>
                 </div>
             </div>
 
-            <!-- LINHA DO TEMPO -->
             <div style="margin: 60px 0;">
                 <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.8rem; margin-bottom: 30px; text-align: center;">
-                    <i class="fas fa-timeline"></i> Linha do Tempo Histórica
+                    <i class="fas fa-timeline"></i> Linha do Tempo
                 </h3>
                 
-                <div style="position: relative; max-width: 900px; margin: 0 auto; padding: 40px 0;">
-                    <!-- Linha central -->
-                    <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: var(--cor-cafe); transform: translateX(-50%);"></div>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
                     
-                    <!-- Evento 1 -->
-                    <div style="position: relative; margin: 50px 0; display: flex;">
-                        <div style="flex: 1; padding-right: 40px; text-align: right;">
-                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: var(--sombra); border-right: 4px solid var(--cor-cafe);">
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-content-box">
                                 <h4 style="color: var(--cor-ifce); margin-bottom: 10px;">🏛️ 1755</h4>
-                                <p><strong>Fundação da Missão de Nossa Senhora da Palma</strong></p>
-                                <p style="font-size: 0.95rem; color: #666; margin-top: 10px;">
-                                    Jesuítas estabelecem missão para aldeamento indígena, marcando o início do processo de colonização organizada.
-                                </p>
+                                <p><strong>Missão de N. Sra. da Palma</strong></p>
+                                <p style="font-size: 0.95rem; color: #666; margin-top: 5px;">Jesuítas estabelecem missão, iniciando a colonização organizada.</p>
                             </div>
                         </div>
-                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--cor-cafe); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 3px var(--cor-cafe);"></div>
-                        <div style="flex: 1; padding-left: 40px;"></div>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-spacer"></div>
                     </div>
                     
-                    <!-- Evento 2 -->
-                    <div style="position: relative; margin: 50px 0; display: flex;">
-                        <div style="flex: 1; padding-right: 40px;"></div>
-                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--cor-cafe); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 3px var(--cor-cafe);"></div>
-                        <div style="flex: 1; padding-left: 40px;">
-                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: var(--sombra); border-left: 4px solid var(--cor-cafe);">
+                    <div class="timeline-item">
+                        <div class="timeline-spacer"></div>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-right">
+                            <div class="timeline-content-box">
                                 <h4 style="color: var(--cor-ifce); margin-bottom: 10px;">📜 1858</h4>
-                                <p><strong>Elevação à Vila e Adoção do Nome Baturité</strong></p>
-                                <p style="font-size: 0.95rem; color: #666; margin-top: 10px;">
-                                    Após mais de um século, a vila oficializa o nome indígena, reconectando-se simbolicamente com suas raízes originárias.
-                                </p>
+                                <p><strong>Vila de Baturité</strong></p>
+                                <p style="font-size: 0.95rem; color: #666; margin-top: 5px;">A vila oficializa o nome indígena, reconectando-se com suas raízes.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Evento 3 -->
-                    <div style="position: relative; margin: 50px 0; display: flex;">
-                        <div style="flex: 1; padding-right: 40px; text-align: right;">
-                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: var(--sombra); border-right: 4px solid var(--cor-cafe);">
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-content-box">
                                 <h4 style="color: var(--cor-ifce); margin-bottom: 10px;">🌱 1824</h4>
-                                <p><strong>Chegada do Café por Manoel Felipe Castelo Branco</strong></p>
-                                <p style="font-size: 0.95rem; color: #666; margin-top: 10px;">
-                                    Mudas trazidas do Pará encontram no solo e clima da serra condições ideais, iniciando o ciclo do "ouro marrom".
-                                </p>
+                                <p><strong>Chegada do Café</strong></p>
+                                <p style="font-size: 0.95rem; color: #666; margin-top: 5px;">Mudas trazidas do Pará iniciam o ciclo do "ouro marrom".</p>
                             </div>
                         </div>
-                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--cor-cafe); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 3px var(--cor-cafe);"></div>
-                        <div style="flex: 1; padding-left: 40px;"></div>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-spacer"></div>
                     </div>
-                    
-                    <!-- Evento 4 -->
-                    <div style="position: relative; margin: 50px 0; display: flex;">
-                        <div style="flex: 1; padding-right: 40px;"></div>
-                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--cor-cafe); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 3px var(--cor-cafe);"></div>
-                        <div style="flex: 1; padding-left: 40px;">
-                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: var(--sombra); border-left: 4px solid var(--cor-cafe);">
+
+                    <div class="timeline-item">
+                        <div class="timeline-spacer"></div>
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-right">
+                            <div class="timeline-content-box">
                                 <h4 style="color: var(--cor-ifce); margin-bottom: 10px;">🚂 1882</h4>
-                                <p><strong>Inauguração da Estrada de Ferro de Baturité</strong></p>
-                                <p style="font-size: 0.95rem; color: #666; margin-top: 10px;">
-                                    Primeira ferrovia cearense conecta Baturité a Fortaleza, revolucionando economia e mobilidade regional.
-                                </p>
+                                <p><strong>Estrada de Ferro</strong></p>
+                                <p style="font-size: 0.95rem; color: #666; margin-top: 5px;">Primeira ferrovia cearense conecta Baturité a Fortaleza.</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Evento 5 -->
-                    <div style="position: relative; margin: 50px 0; display: flex;">
-                        <div style="flex: 1; padding-right: 40px; text-align: right;">
-                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: var(--sombra); border-right: 4px solid var(--cor-cafe);">
-                                <h4 style="color: var(--cor-ifce); margin-bottom: 10px;">📈 Século XX</h4>
-                                <p><strong>Apogeu e Transformação Econômica</strong></p>
-                                <p style="font-size: 0.95rem; color: #666; margin-top: 10px;">
-                                    Baturité atinge 2% da produção nacional de café, consolidando-se como centro comercial do Maciço.
-                                </p>
-                            </div>
-                        </div>
-                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--cor-cafe); border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 3px var(--cor-cafe);"></div>
-                        <div style="flex: 1; padding-left: 40px;"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- CICLO DO CAFÉ -->
             <div class="conteudo-texto">
-                <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.8rem; margin: 50px 0 25px;">
-                    <i class="fas fa-seedling"></i> O Ciclo do Café: O "Ouro Marrom" de Baturité
+                <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.8rem; margin: 40px 0 20px;">
+                    <i class="fas fa-seedling"></i> O Ciclo do Café
                 </h3>
                 
-                <p>A introdução do café em 1824 transformou radicalmente a economia e sociedade baturiteense. O solo vulcânico, o clima ameno da serra e a altitude proporcionaram condições excepcionais para o cultivo da variedade <strong>Coffea arabica</strong>.</p>
+                <p>O café não foi apenas um produto agrícola; foi o <strong>motor da modernização</strong> de Baturité.</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 35px 0;">
-                    <div style="padding: 25px; background: linear-gradient(135deg, #f9f3e9, #f5ebd8); border-radius: 12px; border: 2px solid #d4b896;">
-                        <h4 style="color: #8B4513; margin-bottom: 15px;"><i class="fas fa-chart-line"></i> Impacto Econômico</h4>
+                <div class="cards-container">
+                    <div style="padding: 20px; background: linear-gradient(135deg, #f9f3e9, #f5ebd8); border-radius: 12px; border: 2px solid #d4b896;">
+                        <h4 style="color: #8B4513; margin-bottom: 10px;">Economia</h4>
                         <ul style="padding-left: 20px;">
-                            <li>No auge, produção de 2% do café brasileiro</li>
-                            <li>Geração de riqueza que financiou obras urbanas</li>
-                            <li>Atração de imigrantes e investimentos</li>
-                            <li>Criação do primeiro sistema bancário regional</li>
+                            <li>Chegou a 2% da produção nacional</li>
+                            <li>Criou o primeiro sistema bancário regional</li>
                         </ul>
                     </div>
                     
-                    <div style="padding: 25px; background: linear-gradient(135deg, #e9f3f9, #d8ebf5); border-radius: 12px; border: 2px solid #96b8d4;">
-                        <h4 style="color: #0A3D5F; margin-bottom: 15px;"><i class="fas fa-city"></i> Transformação Urbana</h4>
+                    <div style="padding: 20px; background: linear-gradient(135deg, #e9f3f9, #d8ebf5); border-radius: 12px; border: 2px solid #96b8d4;">
+                        <h4 style="color: #0A3D5F; margin-bottom: 10px;">Urbanismo</h4>
                         <ul style="padding-left: 20px;">
-                            <li>Expansão do centro histórico</li>
-                            <li>Construção de casarões e armazéns</li>
-                            <li>Modernização da infraestrutura urbana</li>
-                            <li>Desenvolvimento do comércio especializado</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="padding: 25px; background: linear-gradient(135deg, #e9f9e9, #d8f5d8); border-radius: 12px; border: 2px solid #96d496;">
-                        <h4 style="color: #2E8B57; margin-bottom: 15px;"><i class="fas fa-people-arrows"></i> Mudanças Sociais</h4>
-                        <ul style="padding-left: 20px;">
-                            <li>Formação de uma burguesia cafeeira</li>
-                            <li>Diferenciação social mais acentuada</li>
-                            <li>Surgimento de profissões especializadas</li>
-                            <li>Mudanças nos costumes e hábitos</li>
+                            <li>Construção de casarões históricos</li>
+                            <li>Expansão do comércio</li>
                         </ul>
                     </div>
                 </div>
-                
-                <p>O café não foi apenas um produto agrícola; foi o <strong>motor da modernização</strong> de Baturité, financiando escolas, igrejas, praças e a infraestrutura que transformou a vila em cidade.</p>
             </div>
 
-            <!-- A ERA FERROVIÁRIA -->
-            <div style="margin: 60px 0; padding: 40px; background: #f0f7ff; border-radius: 15px; border-left: 6px solid var(--cor-ferro);">
-                <h3 style="color: var(--cor-ferro); font-family: var(--fonte-titulo); font-size: 1.8rem; margin-bottom: 30px;">
-                    <i class="fas fa-train"></i> A Revolução sobre Trilhos: A Ferrovia
-                </h3>
-                
-                <div class="conteudo-texto">
-                    <p>A Estrada de Ferro de Baturité, inaugurada em 2 de fevereiro de 1882, representou muito mais que um meio de transporte. Foi um <strong>símbolo de progresso e integração</strong> que redefiniu a relação de Baturité com o estado e o país.</p>
-                    
-                    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 40px 0;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <h4 style="color: var(--cor-ifce); margin-bottom: 15px;"><i class="fas fa-bolt"></i> Impactos Imediatos</h4>
-                            <ul style="padding-left: 20px;">
-                                <li>Viagem Fortaleza-Baturité reduzida de 3 dias para 6 horas</li>
-                                <li>Valorização das terras próximas às estações</li>
-                                <li>Escoamento eficiente da produção cafeeira</li>
-                                <li>Chegada de produtos industrializados</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="flex: 1; min-width: 300px;">
-                            <h4 style="color: var(--cor-ifce); margin-bottom: 15px;"><i class="fas fa-network-wired"></i> Transformações Duradouras</h4>
-                            <ul style="padding-left: 20px;">
-                                <li>Integração econômica regional</li>
-                                <li>Formação de novos núcleos urbanos</li>
-                                <li>Chegada de ideias e informações</li>
-                                <li>Modernização dos serviços públicos</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <p>A ferrovia também teve um <strong>impacto cultural profundo</strong>. As estações se tornaram pontos de encontro, as viagens de trem eram eventos sociais, e o apito da locomotiva marcava o ritmo da vida urbana. Comerciantes, estudantes, autoridades e famílias inteiras circulavam pelos trilhos que uniam a serra à capital.</p>
-                </div>
-            </div>
-
-            <!-- IMAGENS DA MEMÓRIA -->
             <div style="text-align: center; margin: 50px 0;">
-                <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.8rem; margin-bottom: 30px;">
-                    <i class="fas fa-images"></i> Janelas para o Passado
-                </h3>
+                <h3 style="color: var(--cor-cafe); margin-bottom: 20px;"><i class="fas fa-images"></i> Janelas para o Passado</h3>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div class="grid-galeria" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                     <div>
-                        <img src="https://www.opovo.com.br/_midias/jpg/2022/12/02/995x663/1_mosteiro___01-20433778.jpg"
-                             alt="Mosteiro dos Jesuítas" 
-                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                        <p style="margin-top: 15px; color: #666; font-style: italic;">
-                            Mosteiro dos Jesuítas - Marco da colonização religiosa
-                        </p>
+                        <img src="https://www.opovo.com.br/_midias/jpg/2022/12/02/995x663/1_mosteiro___01-20433778.jpg" alt="Mosteiro" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Mosteiro dos Jesuítas</p>
                     </div>
-                    
                     <div>
-                        <img src="https://sebrae.com.br/Sebrae/Portal%20Sebrae/UFs/CE/Anexos/sao%20luis%201.jpg" 
-                             alt="Café de Baturité" 
-                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                        <p style="margin-top: 15px; color: #666; font-style: italic;">
-                            O "Ouro Marrom" - Base da economia baturiteense
-                        </p>
+                        <img src="https://sebrae.com.br/Sebrae/Portal%20Sebrae/UFs/CE/Anexos/sao%20luis%201.jpg" alt="Café" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Café de Sombra</p>
                     </div>
-                    
                     <div>
-                        <img src="https://live.staticflickr.com/3117/2896260761_2231bfcd44_z.jpg"
-                             alt="Estação Ferroviária" 
-                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                        <p style="margin-top: 15px; color: #666; font-style: italic;">
-                            Estação Ferroviária - Símbolo do progresso
-                        </p>
+                        <img src="https://live.staticflickr.com/3117/2896260761_2231bfcd44_z.jpg" alt="Estação" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Estação Ferroviária</p>
                     </div>
                 </div>
             </div>
 
-            <!-- LEGADO DA MEMÓRIA -->
-            <div class="conteudo-texto" style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #fdfbf7, #f5f0e6); border-radius: 15px; border: 3px solid var(--cor-cafe);">
-                <h3 style="color: var(--cor-cafe); font-family: var(--fonte-titulo); font-size: 1.8rem; margin-bottom: 25px; text-align: center;">
-                    <i class="fas fa-landmark"></i> O Legado que Nos Constrói
-                </h3>
-                
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">
-                    A memória de Baturité não é apenas um registro do que passou; é a <strong>fundamentação do nosso presente</strong> e a bússola para nosso futuro.
-                </p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; text-align: center;">
-                    <div>
-                        <div style="width: 80px; height: 80px; background: var(--cor-cafe); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                            <i class="fas fa-mountain" style="font-size: 2rem; color: white;"></i>
-                        </div>
-                        <h4 style="color: var(--cor-cafe); margin-bottom: 10px;">Raízes Indígenas</h4>
-                        <p>Nomes, saberes e conexão com a terra</p>
-                    </div>
-                    
-                    <div>
-                        <div style="width: 80px; height: 80px; background: var(--cor-terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                            <i class="fas fa-seedling" style="font-size: 2rem; color: white;"></i>
-                        </div>
-                        <h4 style="color: var(--cor-terra); margin-bottom: 10px;">Ciclo do Café</h4>
-                        <p>Prosperidade, arquitetura e identidade</p>
-                    </div>
-                    
-                    <div>
-                        <div style="width: 80px; height: 80px; background: var(--cor-ferro); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                            <i class="fas fa-train" style="font-size: 2rem; color: white;"></i>
-                        </div>
-                        <h4 style="color: var(--cor-ferro); margin-bottom: 10px;">Era Ferroviária</h4>
-                        <p>Progresso, integração e modernidade</p>
-                    </div>
-                </div>
-                
-                <p style="text-align: center; font-style: italic; margin-top: 40px; padding: 25px; background: white; border-radius: 10px; border-left: 5px solid var(--cor-cafe);">
-                    <strong>"Conhecer nossa memória não é viver no passado, mas entender as raízes que sustentam nossa identidade presente e alimentam nossos sonhos futuros."</strong>
-                </p>
-            </div>
-
-            <!-- SLIDER COMPARATIVO -->
-            <div style="text-align: center; margin: 60px 0 30px;">
-                <h3 style="color: var(--cor-cafe); font-size: 1.8rem;">
-                    <i class="fas fa-exchange-alt"></i> Comparação: Passado e Presente
-                </h3>
-                <p>Deslize para ver a transformação de Baturité ao longo do tempo</p>
+            <div style="text-align: center; margin: 50px 0 20px;">
+                <h3 style="color: var(--cor-cafe); font-size: 1.5rem;">Passado vs Presente</h3>
+                <p style="font-size: 0.9rem;">Arraste para comparar</p>
             </div>
 
             <div class="slider-container">
-                <img src="https://ceara.hi7.co/ceara/ceara-56c93c5822c22.jpg" 
-                     class="img-fundo" 
-                     alt="Baturité Atual">
-                
+                <img src="https://ceara.hi7.co/ceara/ceara-56c93c5822c22.jpg" class="img-fundo" alt="Baturité Atual">
                 <div class="img-frente" id="imgFrente" 
                      style="background-image: url('https://servicodados.ibge.gov.br/api/v1/resize/image?maxwidth=800&maxheight=600&caminho=biblioteca.ibge.gov.br/visualizacao/fotografias/GEBIS%20-%20RJ/ce34351.jpg');
-                            background-size: cover; 
-                            background-position: center;
-                            background-repeat: no-repeat;">
+                            background-size: cover; background-position: center; background-repeat: no-repeat;">
                 </div>
-                
                 <input type="range" min="0" max="100" value="50" class="slider-controle" id="sliderComparador" oninput="moverSlider(this.value)">
                 <div class="slider-handle"></div>
             </div>
         </section>
 
-        <!-- SEÇÃO: TERRITÓRIO -->
         <section id="territorio" class="secao secao-territorio">
             <h2 class="titulo-secao"><i class="fas fa-mountain"></i> Território de Baturité</h2>
             
             <div class="conteudo-texto">
-                <p>O território de Baturité está localizado no <strong>Maciço de Baturité</strong>, uma das regiões mais singulares do Ceará. Seu relevo elevado cria um clima mais úmido e ameno do que o sertão ao redor, formando um ambiente ecológico raro no Nordeste: uma área de <strong>Mata Atlântica inserida em pleno semiárido</strong>.</p>
-                
-                <p>Antes da colonização europeia, o maciço já era habitado e organizado pelos povos originários, que utilizaram o território para agricultura, rituais, circulação e obtenção de recursos. <strong>As trilhas abertas por esses grupos se tornaram rotas</strong> utilizadas posteriormente por colonizadores, comerciantes e, séculos mais tarde, pela rede ferroviária.</p>
+                <p>O território de Baturité é singular: uma ilha de <strong>Mata Atlântica inserida no semiárido</strong>. As trilhas abertas pelos povos originários se tornaram rotas utilizadas posteriormente pela rede ferroviária.</p>
             </div>
 
-            <img src="https://www.sinageo.org.br/2014/trabalhos/5/imagens/5-593-2e473d710a.jpeg"
-                alt="Mapa de Baturité"
-                class="imagem-conteudo">
-            <p style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">
-                Maciço de Baturité - O território que moldou nossa história
-            </p>
+            <img src="https://www.sinageo.org.br/2014/trabalhos/5/imagens/5-593-2e473d710a.jpeg" alt="Mapa" class="imagem-conteudo">
 
-            <div class="conteudo-texto">
-                <p>O território também se destaca pela <strong>abundância de nascentes e cursos d'água</strong>. A serra funciona como uma grande caixa d'água natural que abastece cidades da região, facilitando o desenvolvimento de aldeias, engenhos, fazendas de café e da própria área urbana de Baturité.</p>
-                
-                <p>Outro elemento marcante é a <strong>geodiversidade do maciço</strong>. A região reúne vales frios, encostas íngremes, rochas de diferentes idades geológicas e microclimas que abrigam espécies de plantas e animais inexistentes no restante do Ceará.</p>
-                
-                <p>Assim, o território de Baturité não é apenas o espaço físico onde os acontecimentos históricos ocorreram. Ele é o <strong>fundamento que possibilitou o desenvolvimento econômico, cultural e social da região</strong>. Sua geografia singular conecta passado e presente, moldando a memória e a identidade dos municípios que compõem o Maciço.</p>
-            </div>
-
-            <img src="https://www.ymbuagroflorestal.com.br/serra-do-baturite-uma-riqueza-cearense/img_9492a/"
-                alt="Paisagem de Baturité"
-                class="imagem-conteudo">
-            <p style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">
-                Paisagem única do Maciço de Baturité
-            </p>
-
-            <!-- CARDS DO TERRITÓRIO -->
             <div class="cards-container">
                 <div class="card card-territorio">
-                    <h3><i class="fas fa-water"></i> Recursos Hídricos</h3>
-                    <p>A serra funciona como uma grande caixa d'água natural, com abundância de nascentes que abastecem toda a região.</p>
+                    <h3><i class="fas fa-water"></i> Água</h3>
+                    <p>A serra funciona como uma grande caixa d'água natural, com abundância de nascentes.</p>
                 </div>
-                
                 <div class="card card-territorio">
-                    <h3><i class="fas fa-route"></i> Rotas Históricas</h3>
-                    <p>As trilhas abertas pelos povos originários se tornaram as rotas comerciais e, posteriormente, a rede ferroviária.</p>
-                </div>
-                
-                <div class="card card-territorio">
-                    <h3><i class="fas fa-leaf"></i> Biodiversidade Única</h3>
-                    <p>Microclimas especiais abrigam espécies de plantas e animais inexistentes no restante do Ceará.</p>
+                    <h3><i class="fas fa-leaf"></i> Biodiversidade</h3>
+                    <p>Microclimas especiais abrigam espécies raras no Ceará.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: IDENTIDADE -->
         <section id="identidade" class="secao secao-identidade">
             <h2 class="titulo-secao"><i class="fas fa-users"></i> Identidade Baturiteense</h2>
             
             <div class="conteudo-texto">
-                <p>A identidade cultural de Baturité é construída a partir das tradições que unem passado e presente, conectando a história do território com as práticas atuais de sua gente.</p>
+                <p>A identidade local é forjada na tradição e na adaptação.</p>
             </div>
 
-            <!-- CARDS DA IDENTIDADE -->
             <div class="cards-container">
                 <div class="card card-identidade">
-                    <h3><i class="fas fa-cow"></i> 1. O que é a Pega de Boi</h3>
-                    <p>A pega de boi no mato é uma tradição do sertão, que começou como forma de recuperar o gado criado solto na caatinga. Hoje é um evento cultural: um boi é solto na mata e os vaqueiros entram a cavalo para encontrá-lo e capturá-lo. Eles usam roupas de couro para se proteger dos espinhos. A prática exige habilidade, coragem e representa a força e a identidade do povo sertanejo.</p>
+                    <h3><i class="fas fa-cow"></i> A Pega de Boi</h3>
+                    <p>Tradição sertaneja onde vaqueiros encourados buscam o gado na mata fechada. Hoje é um evento cultural que celebra a coragem e habilidade do sertanejo.</p>
                 </div>
                 
                 <div class="card card-identidade">
-                    <h3><i class="fas fa-hand-peace"></i> 2. Por que Não é Considerada Maus-Tratos</h3>
-                    <p>Para quem defende a tradição, a pega de boi não é maus-tratos porque o objetivo não é machucar o animal. O boi é solto na mata e a captura é feita de forma rápida, como no manejo tradicional do gado solto. Os vaqueiros evitam ferimentos, já que o animal é valioso e faz parte do trabalho rural. Muitos eventos seguem regras e cuidados para garantir segurança ao boi, ao cavalo e aos participantes.</p>
+                    <h3><i class="fas fa-hand-peace"></i> Ética Animal</h3>
+                    <p>Diferente de rodeios, o foco é a captura rápida (manejo), não o ferimento. Regras modernas garantem a segurança do boi, cavalo e vaqueiro.</p>
                 </div>
                 
                 <div class="card card-identidade">
-                    <h3><i class="fas fa-person-dress"></i> 3. A Participação das Mulheres</h3>
-                    <p>A entrada das mulheres na pega de boi foi marcada por dificuldade e preconceito, porque por muito tempo disseram que era "coisa de homem". Mesmo assim, elas enfrentaram críticas, mostraram força e hoje têm grande destaque. Homens e mulheres usam os mesmos equipamentos: roupas de couro, luvas, chapéu e cavalo preparado para o mato. As vaqueiras ajudam a manter viva e cada vez mais diversa essa tradição.</p>
+                    <h3><i class="fas fa-female"></i> As Mulheres</h3>
+                    <p>Vencendo o preconceito de ser "coisa de homem", as vaqueiras hoje competem com a mesma indumentária e coragem, renovando a tradição.</p>
                 </div>
             </div>
 
-            <img src="https://i.ibb.co/zVzH4r2h/Whats-App-Image-2025-12-11-at-18-27-30.jpg" alt="Whats App Image 2025 12 11 at 18 27 30" border="0">
-
-            <p style="text-align: center; color: #666; font-style: italic; margin-top: 10px;">
-                Tradição da pega de boi - Identidade cultural de Baturité
-            </p>
-
-            <!-- TEXTO SOBRE CHOCALHOS -->
-            <div class="conteudo-texto" style="margin-top: 40px; padding: 25px; background: #f8f7ff; border-radius: 10px; border-left: 4px solid var(--cor-identidade);">
-                <h3 style="color: var(--cor-identidade); margin-bottom: 15px;"><i class="fas fa-bell"></i> O Som dos Chocalhos</h3>
-                <p>Os chocalhos usados nas vacas cada um tem um som diferente, por causa do tamanho e do formato, e os vaqueiros antigos aprenderam a reconhecer esses sons no meio da caatinga. Assim, mesmo de longe, eles sabiam qual vaca estava passando e conseguiam identificar o rumo do rebanho. Esse conhecimento ajudava muito na pega de boi e no trabalho diário, mostrando a conexão e a experiência dos vaqueiros com o gado.</p>
+            <img src="https://i.ibb.co/zVzH4r2h/Whats-App-Image-2025-12-11-at-18-27-30.jpg" alt="Pega de Boi" class="imagem-conteudo">
+            
+            <div class="conteudo-texto" style="margin-top: 30px; padding: 20px; background: #f8f7ff; border-radius: 10px; border-left: 4px solid var(--cor-identidade);">
+                <h3 style="color: var(--cor-identidade); margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-bell"></i> O Som dos Chocalhos</h3>
+                <p>Cada chocalho tem um som único. Os vaqueiros antigos identificavam qual vaca estava passando apenas pelo "tinir" no meio da mata, uma habilidade crucial na pega de boi.</p>
             </div>
         </section>
 
-        <!-- SEÇÃO: CONEXÕES -->
         <section id="integracao" class="secao" style="border-left-color: var(--cor-ferro);">
-            <h2 class="titulo-secao"><i class="fas fa-link"></i> Como Tudo se Conecta</h2>
+            <h2 class="titulo-secao"><i class="fas fa-link"></i> Conexões</h2>
             
             <div class="conteudo-texto">
-                <p>Memória, Território e Identidade formam um ciclo completo que explica Baturité:</p>
-                
-                <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 40px 0;">
-                    <div style="flex: 1; min-width: 250px; padding: 25px; background: #f0f7ff; border-radius: 10px; border: 2px solid var(--cor-ifce);">
-                        <h3 style="color: var(--cor-cafe); margin-bottom: 15px;">🚂 Memória</h3>
-                        <p><strong>O passado</strong>: os eventos históricos que aconteceram.</p>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
-                            Café, ferrovia, fundação da cidade
-                        </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 30px 0;">
+                    <div style="flex: 1; min-width: 250px; padding: 20px; background: #f0f7ff; border-radius: 10px; border: 1px solid var(--cor-ifce);">
+                        <strong style="color: var(--cor-ifce);">🚂 Memória (O QUE)</strong><br>
+                        Os eventos históricos: Café, ferrovia, fundação.
                     </div>
                     
-                    <div style="flex: 1; min-width: 250px; padding: 25px; background: #f5f0e6; border-radius: 10px; border: 2px solid var(--cor-terra);">
-                        <h3 style="color: var(--cor-terra); margin-bottom: 15px;">🗺️ Território</h3>
-                        <p><strong>O lugar</strong>: onde esses eventos aconteceram.</p>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
-                            Serra, clima, recursos naturais
-                        </p>
+                    <div style="flex: 1; min-width: 250px; padding: 20px; background: #f5f0e6; border-radius: 10px; border: 1px solid var(--cor-terra);">
+                        <strong style="color: var(--cor-terra);">🗺️ Território (ONDE)</strong><br>
+                        O palco: Serra, clima, mata.
                     </div>
                     
-                    <div style="flex: 1; min-width: 250px; padding: 25px; background: #f7f0ff; border-radius: 10px; border: 2px solid var(--cor-identidade);">
-                        <h3 style="color: var(--cor-identidade); margin-bottom: 15px;">👤 Identidade</h3>
-                        <p><strong>As pessoas</strong>: quem somos hoje graças a esse passado nesse lugar.</p>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
-                            Tradições, cultura, comunidade
-                        </p>
+                    <div style="flex: 1; min-width: 250px; padding: 20px; background: #f7f0ff; border-radius: 10px; border: 1px solid var(--cor-identidade);">
+                        <strong style="color: var(--cor-identidade);">👤 Identidade (QUEM)</strong><br>
+                        O resultado: Nós, nossas tradições.
                     </div>
                 </div>
-                
-                <p style="font-size: 1.2rem; font-style: italic; text-align: center; padding: 30px; background: linear-gradient(135deg, #fdfbf7, #f5f0e6); border-radius: 15px; border: 2px dashed var(--cor-ferro);">
-                    <strong>"A Memória nos diz O QUE aconteceu, o Território nos mostra ONDE aconteceu, e a Identidade revela QUEM somos por causa disso."</strong>
-                </p>
             </div>
         </section>
 
-        <!-- SEÇÃO: QR CODE -->
         <section id="qrcode" class="secao" style="border-left-color: var(--cor-ifce); text-align: center;">
-            <h2 class="titulo-secao"><i class="fas fa-qrcode"></i> QR Code do Site</h2>
+            <h2 class="titulo-secao" style="justify-content: center;"><i class="fas fa-qrcode"></i> Acesso Mobile</h2>
             
-            <div style="padding: 40px; background: linear-gradient(135deg, #f0f7ff, #e8f4ff); border-radius: 15px; margin: 30px 0;">
-                <h3 style="color: var(--cor-ifce); margin-bottom: 20px;">📱 Escaneie para Acessar</h3>
-                <p style="margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Use a câmera do celular para escanear o QR code e acessar o site completo no seu dispositivo.
-                </p>
+            <div style="padding: 30px 20px; background: #f0f7ff; border-radius: 15px; margin: 20px 0;">
+                <p style="margin-bottom: 20px;">Escaneie para ver no celular</p>
                 
-                <!-- ÁREA PARA QR CODE -->
-                <div class="area-imagem" style="max-width: 400px; margin: 0 auto 30px;">
-                    <div class="instrucao-imagem">🔗 COLE AQUI O QR CODE</div>
-                    <p class="descricao-imagem">Imagem do QR code do seu site</p>
-                    
-                    <div class="exemplo-codigo">
-                        &lt;!-- DELETE ESTE BLOCO E COLE SEU QR CODE AQUI --&gt;<br>
-                        &lt;img src="<span class="tag-destaque">COLE_LINK_DO_QR_CODE_AQUI</span>" <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp; alt="QR Code do site" <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp; style="width: 250px; height: 250px; border-radius: 10px;"&gt;
-                    </div>
+                <div style="border: 2px dashed #ccc; padding: 20px; background: white; display: inline-block; border-radius: 10px;">
+                    <i class="fas fa-qrcode" style="font-size: 100px; color: #ddd;"></i>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Cole seu QR Code aqui</p>
                 </div>
-                
-                <p style="font-size: 0.9rem; color: #666; margin-top: 20px;">
-                    <i class="fas fa-info-circle"></i> O QR code será gerado após hospedar o site
-                </p>
             </div>
             
-            <div style="margin-top: 40px; padding: 25px; background: #f9f9f9; border-radius: 10px;">
-                <h3 style="color: var(--cor-ifce); margin-bottom: 15px;"><i class="fas fa-laptop"></i> Acesso por Link</h3>
-                <p style="margin-bottom: 15px;">Use este link no computador:</p>
-                <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #eee; font-family: monospace; word-break: break-all;">
-                    https://expresso-jac-2025-baturite.netlify.app
-                </div>
+            <div style="margin-top: 20px; font-size: 0.9rem; word-break: break-all;">
+                Link: <strong>https://expresso-jac-2025-baturite.netlify.app</strong>
             </div>
         </section>
     </main>
 
-    <!-- RODAPÉ -->
     <footer>
         <div class="footer-content">
             <div>
-                <h3><i class="fas fa-university"></i> Instituição</h3>
+                <h3>Instituição</h3>
                 <p>IFCE Campus Baturité</p>
-                <p>Curso Técnico em Comércio</p>
-                <p>1º Ano - Turma 2025</p>
+                <p>Técnico em Comércio - 2025</p>
             </div>
-            
             <div>
-                <h3><i class="fas fa-users"></i> Grupos JAC 2025</h3>
-                <p>🚂 Memória (História)</p>
-                <p>🗺️ Território (Geografia)</p>
-                <p>👤 Identidade (Cultura)</p>
-            </div>
-            
-            <div>
-                <h3><i class="fas fa-info-circle"></i> Informações</h3>
+                <h3>Informações</h3>
                 <p>JAC 2025: Juventude, Arte e Ciência</p>
-                <p>Eixo: Identidade, Território e Memória</p>
-                <p>Data: 16-18 de dezembro de 2025</p>
+                <p>16-18 de dezembro de 2025</p>
             </div>
         </div>
-        
         <div class="creditos">
             <p>Desenvolvido para a Mostra Interdisciplinar JAC 2025</p>
-            <p>IFCE Campus Baturité | Todos os direitos reservados</p>
-            <p style="margin-top: 15px; font-size: 0.85rem;">🚂 Uma viagem pela história, espaço e cultura de Baturité</p>
         </div>
     </footer>
 
     <script>
-        // FUNÇÃO PARA O SLIDER
+        // SLIDER
         function moverSlider(valor) {
             document.getElementById('imgFrente').style.width = valor + "%";
             document.querySelector('.slider-handle').style.left = valor + "%";
         }
         
-        // FUNÇÃO PARA ROLAGEM SUAVE DO MENU
+        // ROLAGEM SUAVE MENU
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Atualizar menu ativo
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
+                    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    // Rolagem suave
+                    // Fecha menu em mobile se necessário ou apenas rola
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -989,52 +735,42 @@
             });
         });
         
-        // DETECTAR SEÇÃO ATIVA NA ROLAGEM
+        // DETECTAR SCROLL
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('section[id]');
-            const scrollPos = window.scrollY + 100;
-            
+            const scrollPos = window.scrollY + 150;
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                const sectionId = section.getAttribute('id');
-                
-                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
                     document.querySelectorAll('.nav-link').forEach(link => {
                         link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
+                        if (link.getAttribute('href') === `#${section.getAttribute('id')}`) {
                             link.classList.add('active');
                         }
                     });
                 }
             });
         });
-        
-        // INICIALIZAÇÃO
+
+        // ANIMAÇÃO DE ENTRADA
         document.addEventListener('DOMContentLoaded', function() {
-            // Efeito de entrada nas seções
             const sections = document.querySelectorAll('.secao');
-            sections.forEach((section, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
                 section.style.opacity = '0';
                 section.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                    section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }, 300 + (index * 150));
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
             });
             
-            // Configurar slider inicial
             moverSlider(50);
-            
-            // Remover áreas de imagem após inserir conteúdo
-            document.querySelectorAll('.area-imagem').forEach(area => {
-                area.addEventListener('click', function() {
-                    this.style.borderColor = '#2ed573';
-                    this.style.backgroundColor = '#f1fff7';
-                });
-            });
         });
     </script>
 </body>
