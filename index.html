@@ -18,6 +18,7 @@
             --cor-verde: #2E8B57;
             --cor-terra: #A0522D;
             --cor-identidade: #6A5ACD;
+            --cor-quiz: #E91E63; /* Nova cor para o Quiz */
             --cor-fundo: #FDFBF7;
             --cor-texto: #333333;
             
@@ -47,7 +48,7 @@
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(10, 61, 95, 0.03) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 20%);
-            overflow-x: hidden; /* Evita rolagem lateral indesejada */
+            overflow-x: hidden;
         }
 
         /* ====== CABEÇALHO ====== */
@@ -72,7 +73,7 @@
 
         .titulo-principal {
             font-family: var(--fonte-titulo);
-            font-size: clamp(2rem, 5vw, 2.8rem); /* Responsivo */
+            font-size: clamp(2rem, 5vw, 2.8rem);
             font-weight: 800;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -80,7 +81,7 @@
         }
 
         .subtitulo {
-            font-size: clamp(1rem, 3vw, 1.4rem); /* Responsivo */
+            font-size: clamp(1rem, 3vw, 1.4rem);
             font-weight: 300;
             opacity: 0.9;
             max-width: 900px;
@@ -151,6 +152,7 @@
         .secao-memoria { border-left-color: var(--cor-cafe); }
         .secao-territorio { border-left-color: var(--cor-terra); }
         .secao-identidade { border-left-color: var(--cor-identidade); }
+        .secao-quiz { border-left-color: var(--cor-quiz); }
 
         .titulo-secao {
             font-family: var(--fonte-titulo);
@@ -180,6 +182,7 @@
         .secao-memoria .titulo-secao i { background-color: var(--cor-cafe); }
         .secao-territorio .titulo-secao i { background-color: var(--cor-terra); }
         .secao-identidade .titulo-secao i { background-color: var(--cor-identidade); }
+        .secao-quiz .titulo-secao i { background-color: var(--cor-quiz); }
 
         /* ====== CONTEÚDO DE TEXTO ====== */
         .conteudo-texto {
@@ -204,15 +207,13 @@
             border: 4px solid white;
         }
 
-        /* ====== LINHA DO TEMPO (REFATORADA) ====== */
+        /* ====== LINHA DO TEMPO ====== */
         .timeline-container {
             position: relative;
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 0;
         }
-
-        /* Linha Central */
         .timeline-line {
             position: absolute;
             left: 50%;
@@ -221,18 +222,16 @@
             background: var(--cor-cafe);
             transform: translateX(-50%);
         }
-
         .timeline-item {
             position: relative;
             margin: 50px 0;
             display: flex;
             width: 100%;
         }
-
         .timeline-marker {
             position: absolute;
             left: 50%;
-            top: 20px; /* Alinhado com o topo do card */
+            top: 20px;
             transform: translate(-50%, 0);
             width: 20px;
             height: 20px;
@@ -242,7 +241,6 @@
             box-shadow: 0 0 0 3px var(--cor-cafe);
             z-index: 2;
         }
-
         .timeline-content-box {
             background: white;
             padding: 20px;
@@ -250,30 +248,15 @@
             box-shadow: var(--sombra);
             position: relative;
         }
-
-        /* Lado Esquerdo */
-        .timeline-left {
-            flex: 1;
-            padding-right: 40px;
-            text-align: right;
-        }
+        .timeline-left { flex: 1; padding-right: 40px; text-align: right; }
         .timeline-left .timeline-content-box { border-right: 4px solid var(--cor-cafe); }
-        
-        /* Espaçadores */
         .timeline-spacer { flex: 1; padding-left: 40px; }
-
-        /* Lado Direito */
-        .timeline-right {
-            flex: 1;
-            padding-left: 40px;
-            text-align: left;
-        }
+        .timeline-right { flex: 1; padding-left: 40px; text-align: left; }
         .timeline-right .timeline-content-box { border-left: 4px solid var(--cor-cafe); }
 
         /* ====== CARDS ====== */
         .cards-container {
             display: grid;
-            /* Mudança: minmax de 350px para 280px para caber em celulares */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin: 40px 0;
@@ -296,7 +279,6 @@
             position: relative;
             width: 100%;
             max-width: 900px;
-            /* Altura responsiva com aspect-ratio ou altura fixa menor */
             height: 500px; 
             margin: 40px auto;
             overflow: hidden;
@@ -304,7 +286,6 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             border: 4px solid var(--cor-cafe);
         }
-        
         .img-fundo, .img-frente {
             position: absolute;
             top: 0; left: 0;
@@ -312,7 +293,6 @@
             object-fit: cover;
         }
         .img-frente { width: 50%; border-right: 4px solid white; }
-        
         .slider-handle {
             position: absolute;
             top: 50%; left: 50%;
@@ -325,7 +305,6 @@
             z-index: 11;
             pointer-events: none;
         }
-        
         .slider-controle {
             position: absolute;
             top: 50%; width: 100%; height: 50px;
@@ -333,6 +312,119 @@
             transform: translateY(-50%);
             opacity: 0;
             cursor: ew-resize;
+        }
+
+        /* ====== ESTILOS ESPECÍFICOS DO QUIZ ====== */
+        .quiz-container {
+            background-color: #fcfcfc;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+        }
+
+        .questao {
+            display: none; /* Esconde todas inicialmente */
+            animation: fadeIn 0.5s;
+        }
+        .questao.ativa {
+            display: block; /* Mostra a ativa */
+        }
+
+        .pergunta-texto {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--cor-ifce);
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .opcao-btn {
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--fonte-texto);
+        }
+
+        .opcao-btn:hover:not(:disabled) {
+            border-color: var(--cor-quiz);
+            background-color: rgba(233, 30, 99, 0.05);
+            transform: translateX(5px);
+        }
+
+        .opcao-btn.correto {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .opcao-btn.errado {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .quiz-controles {
+            margin-top: 25px;
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .btn-proximo, .btn-reiniciar {
+            background-color: var(--cor-quiz);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: none; /* Escondido até responder */
+            transition: transform 0.2s;
+        }
+        
+        .btn-reiniciar { background-color: var(--cor-ifce); }
+
+        .btn-proximo:hover, .btn-reiniciar:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .resultado-final {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .pontuacao-destaque {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--cor-quiz);
+            margin: 20px 0;
+            font-family: var(--fonte-titulo);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ====== RODAPÉ ====== */
@@ -358,68 +450,36 @@
             font-size: 0.9rem;
         }
 
-        /* ====== RESPONSIVIDADE (MEDIA QUERIES) ====== */
-        
-        /* Tablets e Telas Médias */
+        /* ====== RESPONSIVIDADE ====== */
         @media (max-width: 992px) {
             .secao { padding: 30px; }
             .slider-container { height: 400px; }
         }
 
-        /* Celulares (Modo Retrato) */
         @media (max-width: 768px) {
-            /* Cabeçalho */
             header { padding: 2rem 1rem; }
-            
-            /* Navegação */
             .nav-link { 
                 padding: 15px 10px; 
                 font-size: 0.9rem; 
-                flex-direction: column; /* Ícone em cima do texto */
+                flex-direction: column; 
                 text-align: center;
                 gap: 5px;
             }
-            
-            /* Ajuste da Linha do Tempo para Celular */
-            .timeline-line { left: 20px; transform: none; } /* Move a linha para a esquerda */
-            
+            .timeline-line { left: 20px; transform: none; }
             .timeline-item { flex-direction: column; margin: 30px 0; }
-            
-            .timeline-marker { 
-                left: 20px; /* Alinha o marcador com a linha */
-                transform: translateX(-50%);
-            }
-            
-            /* Reseta os lados para empilhar tudo */
+            .timeline-marker { left: 20px; transform: translateX(-50%); }
             .timeline-left, .timeline-right {
-                width: 100%;
-                text-align: left;
-                padding: 0 0 0 50px; /* Espaço para a linha à esquerda */
+                width: 100%; text-align: left; padding: 0 0 0 50px;
             }
-            
-            .timeline-spacer { display: none; } /* Esconde o espaço vazio */
-            
+            .timeline-spacer { display: none; }
             .timeline-left .timeline-content-box, 
             .timeline-right .timeline-content-box {
-                border-right: none;
-                border-left: 4px solid var(--cor-cafe); /* Todos com borda na esquerda */
+                border-right: none; border-left: 4px solid var(--cor-cafe);
             }
-
-            /* Slider */
-            .slider-container { height: 300px; } /* Menor no celular */
-
-            /* Títulos e Textos */
+            .slider-container { height: 300px; }
             .titulo-secao { font-size: 1.6rem; }
-            .conteudo-texto { font-size: 1rem; text-align: left; }
-            
-            /* Cards de Pega de Boi */
-            .cards-container { grid-template-columns: 1fr; } /* Uma coluna só */
-            
-            /* Grid da Galeria */
+            .cards-container { grid-template-columns: 1fr; }
             .grid-galeria { grid-template-columns: 1fr !important; }
-
-            /* QR Code Area */
-            .exemplo-codigo { font-size: 0.8rem; padding: 10px; overflow-x: scroll; }
         }
     </style>
 </head>
@@ -440,7 +500,7 @@
             <a href="#territorio" class="nav-link"><i class="fas fa-mountain"></i> <span>Território</span></a>
             <a href="#identidade" class="nav-link"><i class="fas fa-users"></i> <span>Identidade</span></a>
             <a href="#integracao" class="nav-link"><i class="fas fa-link"></i> <span>Conexões</span></a>
-            <a href="#qrcode" class="nav-link"><i class="fas fa-qrcode"></i> <span>QR Code</span></a>
+            <a href="#quiz" class="nav-link"><i class="fas fa-gamepad"></i> <span>Quiz</span></a>
         </div>
     </nav>
 
@@ -674,20 +734,78 @@
             </div>
         </section>
 
-        <section id="qrcode" class="secao" style="border-left-color: var(--cor-ifce); text-align: center;">
-            <h2 class="titulo-secao" style="justify-content: center;"><i class="fas fa-qrcode"></i> Acesso Mobile</h2>
-            
-            <div style="padding: 30px 20px; background: #f0f7ff; border-radius: 15px; margin: 20px 0;">
-                <p style="margin-bottom: 20px;">Escaneie para ver no celular</p>
-                
-                <div style="border: 2px dashed #ccc; padding: 20px; background: white; display: inline-block; border-radius: 10px;">
-                    <i class="fas fa-qrcode" style="font-size: 100px; color: #ddd;"></i>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Cole seu QR Code aqui</p>
-                </div>
+        <section id="quiz" class="secao secao-quiz">
+            <h2 class="titulo-secao"><i class="fas fa-gamepad"></i> Quiz Interativo</h2>
+            <div class="conteudo-texto">
+                <p style="text-align: center;">Teste seus conhecimentos sobre a história e cultura de Baturité!</p>
             </div>
-            
-            <div style="margin-top: 20px; font-size: 0.9rem; word-break: break-all;">
-                Link: <strong>https://expresso-jac-2025-baturite.netlify.app</strong>
+
+            <div class="quiz-container">
+                <div class="questao ativa" id="q1">
+                    <h3 class="pergunta-texto">1. Qual é o significado original do nome "Baturité"?</h3>
+                    <div class="opcoes">
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Terra dos Jesuítas</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'correto')">Serra Verdadeira (Batura + Eté)</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Caminho das Águas</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Montanha de Café</button>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                    <div class="quiz-controles">
+                        <button class="btn-proximo" onclick="proximaPergunta(1)">Próxima <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="questao" id="q2">
+                    <h3 class="pergunta-texto">2. Que cultura agrícola impulsionou a modernização de Baturité no século XIX?</h3>
+                    <div class="opcoes">
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Algodão</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Cana-de-açúcar</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'correto')">Café</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Cacau</button>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                    <div class="quiz-controles">
+                        <button class="btn-proximo" onclick="proximaPergunta(2)">Próxima <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="questao" id="q3">
+                    <h3 class="pergunta-texto">3. O que os vaqueiros antigos utilizavam para identificar as vacas na mata densa?</h3>
+                    <div class="opcoes">
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'correto')">O som único dos chocalhos</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Pinturas no couro</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Marcas nas árvores</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Cães de caça</button>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                    <div class="quiz-controles">
+                        <button class="btn-proximo" onclick="proximaPergunta(3)">Próxima <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                 <div class="questao" id="q4">
+                    <h3 class="pergunta-texto">4. Qual destas etnias indígenas NÃO foi citada como habitante original do Maciço?</h3>
+                    <div class="opcoes">
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Potyguara</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Jenipapo-Kanindé</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'correto')">Tupinambá</button>
+                        <button class="opcao-btn" onclick="verificarResposta(this, 'errado')">Choró</button>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                    <div class="quiz-controles">
+                        <button class="btn-proximo" onclick="mostrarResultado()">Ver Resultado <i class="fas fa-trophy"></i></button>
+                    </div>
+                </div>
+
+                <div class="questao resultado-final" id="resultado">
+                    <h3>Você completou o Quiz!</h3>
+                    <p>Sua pontuação final foi:</p>
+                    <div class="pontuacao-destaque" id="pontos-finais">0/4</div>
+                    <p id="mensagem-final">Continue explorando nossa história!</p>
+                    <div class="quiz-controles" style="text-align: center; border: none;">
+                        <button class="btn-reiniciar" onclick="reiniciarQuiz()" style="display: inline-block;">Jogar Novamente <i class="fas fa-redo"></i></button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -711,13 +829,89 @@
     </footer>
 
     <script>
-        // SLIDER
+        // --- LÓGICA DO SLIDER ---
         function moverSlider(valor) {
             document.getElementById('imgFrente').style.width = valor + "%";
             document.querySelector('.slider-handle').style.left = valor + "%";
         }
+
+        // --- LÓGICA DO QUIZ ---
+        let pontuacao = 0;
+        const totalPerguntas = 4;
+
+        function verificarResposta(botao, status) {
+            // Desabilita todos os botões da mesma pergunta
+            const pai = botao.parentElement;
+            const botoes = pai.querySelectorAll('.opcao-btn');
+            botoes.forEach(btn => btn.disabled = true);
+
+            // Elementos de feedback
+            const feedbackDiv = pai.parentElement.querySelector('.quiz-feedback');
+            const btnProximo = pai.parentElement.querySelector('.btn-proximo');
+
+            if (status === 'correto') {
+                botao.classList.add('correto');
+                feedbackDiv.innerHTML = '<span style="color: #155724;">✅ Resposta Correta!</span>';
+                feedbackDiv.style.backgroundColor = '#d4edda';
+                pontuacao++;
+            } else {
+                botao.classList.add('errado');
+                feedbackDiv.innerHTML = '<span style="color: #721c24;">❌ Resposta Incorreta.</span>';
+                feedbackDiv.style.backgroundColor = '#f8d7da';
+                
+                // Mostra qual era a correta
+                const correta = Array.from(botoes).find(b => b.getAttribute('onclick').includes("'correto'"));
+                if(correta) correta.classList.add('correto');
+            }
+
+            feedbackDiv.style.display = 'block';
+            btnProximo.style.display = 'inline-block';
+        }
+
+        function proximaPergunta(numAtual) {
+            document.getElementById(`q${numAtual}`).classList.remove('ativa');
+            const prox = numAtual + 1;
+            const proxDiv = document.getElementById(`q${prox}`);
+            if (proxDiv) {
+                proxDiv.classList.add('ativa');
+            } else {
+                mostrarResultado();
+            }
+        }
+
+        function mostrarResultado() {
+            // Esconde última pergunta se estiver visível
+            document.querySelectorAll('.questao').forEach(q => q.classList.remove('ativa'));
+            
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.classList.add('ativa');
+            
+            document.getElementById('pontos-finais').innerText = `${pontuacao}/${totalPerguntas}`;
+            
+            let msg = "";
+            if (pontuacao === 4) msg = "Parabéns! Você é um especialista em Baturité! 🏆";
+            else if (pontuacao >= 2) msg = "Muito bom! Você conhece bem nossa história. 👏";
+            else msg = "Que tal reler o site e tentar de novo? 📚";
+            
+            document.getElementById('mensagem-final').innerText = msg;
+        }
+
+        function reiniciarQuiz() {
+            pontuacao = 0;
+            document.getElementById('resultado').classList.remove('ativa');
+            
+            // Reseta botões e feedbacks
+            document.querySelectorAll('.opcao-btn').forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('correto', 'errado');
+            });
+            document.querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+            document.querySelectorAll('.btn-proximo').forEach(b => b.style.display = 'none');
+
+            document.getElementById('q1').classList.add('ativa');
+        }
         
-        // ROLAGEM SUAVE MENU
+        // --- MENU DE NAVEGAÇÃO E SCROLL ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -726,7 +920,6 @@
                 if (targetElement) {
                     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
                     this.classList.add('active');
-                    // Fecha menu em mobile se necessário ou apenas rola
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -735,7 +928,6 @@
             });
         });
         
-        // DETECTAR SCROLL
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('section[id]');
             const scrollPos = window.scrollY + 150;
@@ -751,7 +943,7 @@
             });
         });
 
-        // ANIMAÇÃO DE ENTRADA
+        // --- ANIMAÇÃO DE ENTRADA ---
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('.secao');
             const observer = new IntersectionObserver((entries) => {
